@@ -15,10 +15,10 @@ int main() {
 
     for (int i = 0; i < size; ++i) {
         cout << "Введите название блюда " << i + 1 << ": ";
-        char buffer[100];
-        cin.getline(buffer, 100);
-        bludo[i] = new char[strlen(buffer) + 1];
-        strcpy_s(bludo[i], strlen(buffer) + 1 , buffer);
+        char massive[100];
+        cin.getline(massive, 100);
+        bludo[i] = new char[strlen(massive) + 1];
+        strcpy_s(bludo[i], strlen(massive) + 1 , massive);
 
         cout << "Введите количество порций " << i + 1 << ": ";
         cin >> porcii[i];
@@ -32,13 +32,17 @@ int main() {
             if (strcmp(bludo[j], bludo[j + 1]) > 0) {
                 swap(bludo[j], bludo[j + 1]);
                 swap(porcii[j], porcii[j + 1]);
+                swap(cena[j], cena[j + 1]);
             }
         }
     }
     cout << "\nОтсортированный список заказов:\n";
+       double s = 0;
     for (int i = 0; i < size; ++i) {
         cout << "Название блюда: " << bludo[i] << ", Количество порций: " << porcii[i] << ", Стоимость: " << cena[i] << endl;
+        s += cena[i] * porcii[i];
     }
+    cout <<"Сумма всего заказа: " << s;
     for (int i = 0; i < size; ++i) {
         delete[] bludo[i];
     }
